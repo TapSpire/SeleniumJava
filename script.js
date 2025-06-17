@@ -14,53 +14,75 @@ const textContent = [
   '0', '1', '2', '1', '0',
 ];
 
+
+
 const correctWords = [
-  "Accommodate", "Achieve", "Across", "Aggressive", "A lot",
-  "Amateur", "Apparent", "Argument", "Basically", "Beginning",
-  "Believe", "Business", "Calendar", "Category", "Collectible",
-  "Column", "Committed", "Conscience", "Conscious", "Definitely",
-  "Discipline", "Drunkenness", "Embarrass", "Equipment", "Exaggerate",
-  "Exceed", "Experience", "Explanation", "Familiar", "Finally",
-  "Foreign", "Friend", "Generally", "Government", "Grammar",
-  "Guarantee", "Harass", "Height", "Humorous", "Immediate",
-  "Independent", "Interrupt", "Irresistible", "Knowledge", "Leisure",
-  "Library", "License", "Maintenance", "Maneuver", "Medieval",
-  "Memento", "Millennium", "Miniature", "Minimum", "Miscellaneous",
-  "Necessary", "Noticeable", "Occasion", "Occasionally", "Occurred",
-  "Occurrence", "Opportunity", "Pastime", "Perseverance", "Personnel",
-  "Playwright", "Possession", "Preferred", "Prejudice", "Principal",
-  "Privilege", "Probably", "Proceed", "Professor", "Pronunciation",
-  "Publicly", "Questionnaire", "Receive", "Recommend", "Referred",
-  "Repetition", "Restaurant", "Ridiculous", "Rhythm", "Schedule",
-  "Secretary", "Separate", "Similar", "Special", "Strength",
-  "Success", "Supersede", "Surprise", "Temperature", "Twelfth",
-  "Tomorrow", "Until", "Vacuum", "Weather", "Weird",
-  "Wherever", "Which", "Withhold", "Writing", "Yield"
+  "WebDriver driver = new ChromeDriver();",
+  "driver.get(\"https://www.example.com\");",
+  "driver.findElement(By.id(\"username\")).sendKeys(\"user1\");",
+  "driver.findElement(By.name(\"password\")).sendKeys(\"pass123\");",
+  "driver.findElement(By.className(\"submit-btn\")).click();",
+  "driver.quit();",
+  "driver.close();",
+  "String title = driver.getTitle();",
+  "String currentURL = driver.getCurrentUrl();",
+  "WebElement element = driver.findElement(By.tagName(\"h1\"));",
+  "driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));",
+  "WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));",
+  "wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(\"welcome\")));",
+  "driver.switchTo().alert().accept();",
+  "driver.switchTo().alert().dismiss();",
+  "driver.switchTo().frame(\"frame1\");",
+  "driver.switchTo().defaultContent();",
+  "Actions actions = new Actions(driver);",
+  "actions.moveToElement(driver.findElement(By.id(\"menu\"))).perform();",
+  "actions.doubleClick(driver.findElement(By.id(\"button\"))).perform();",
+  "JavascriptExecutor js = (JavascriptExecutor) driver;",
+  "js.executeScript(\"window.scrollBy(0,500)\");",
+  "driver.navigate().to(\"https://google.com\");",
+  "driver.navigate().back();",
+  "driver.navigate().forward();",
+  "driver.manage().window().maximize();",
+  "TakesScreenshot screenshot = ((TakesScreenshot)driver);",
+  "File src = screenshot.getScreenshotAs(OutputType.FILE);",
+  "Select dropdown = new Select(driver.findElement(By.id(\"country\")));",
+  "dropdown.selectByVisibleText(\"Canada\");"
 ];
 
 const incorrectWords = [
-  "Acommodate", "Acheive", "Accross", "Aggresive", "Alot",
-  "Amature", "Apparant", "Arguement", "Basicly", "Begining",
-  "Belive", "Buisness", "Calender", "Catagory", "Collectable",
-  "Colum", "Commited", "Conscence", "Concious", "Definately",
-  "Disipline", "Drunkeness", "Embarass", "Equiptment", "Exagerate",
-  "Excede", "Experiance", "Explanaton", "Familar", "Finaly",
-  "Foriegn", "Freind", "Generalley", "Goverment", "Grammer",
-  "Gaurantee", "Harrass", "Hieght", "Humerous", "Imediate",
-  "Independant", "Interupt", "Irresistable", "Knowlege", "Liesure",
-  "Libary", "Lisense", "Maintanance", "Maneouvre", "Midieval",
-  "Momento", "Millenium", "Minature", "Minimun", "Miscelaneous",
-  "Necesary", "Noticable", "Ocasion", "Occasionly", "Ocurred",
-  "Occurence", "Oppertunity", "Pasttime", "Perseverence", "Personel",
-  "Playwrite", "Posession", "Prefered", "Predjudice", "Principle",
-  "Priviledge", "Probly", "Procede", "Proffessor", "Pronounciation",
-  "Publically", "Questionaire", "Recieve", "Reccomend", "Refered",
-  "Repitition", "Restaraunt", "Rediculous", "Rythm", "Schedual",
-  "Secratary", "Seperate", "Similiar", "Specal", "Strenght",
-  "Sucess", "Supercede", "Suprise", "Temprature", "Twelth",
-  "Tommorow", "Untill", "Vacume", "Wether", "Wierd",
-  "Whereever", "Wich", "Withold", "Writting", "Yeild"
+  "WebDriver driver = new Firefox();",  // Incorrect constructor
+  "driver.goto(\"http://site.com\");",  // No 'goto' method
+  "driver.find(By.id(\"test\"));",  // Method 'find' doesn't exist
+  "driver.getElements(By.className(\"box\"));",  // Should be 'findElements'
+  "driver.click(By.name(\"login\"));",  // Cannot call click on driver directly
+  "driver.inputText(\"username\", \"admin\");",  // No such method
+  "WebDriverWait wait = new WebDriverWait(10);",  // Missing driver reference
+  "driver.switch.alert().accept();",  // 'switch.alert()' is invalid
+  "driver.closeAll();",  // No such method
+  "driver.quitBrowser();",  // Method doesn't exist
+  "driver.maximize();",  // Should be 'driver.manage().window().maximize();'
+  "String pageSource = driver.pageHTML();",  // Incorrect method
+  "driver.findElementByText(\"Submit\");",  // Not a valid method
+  "driver.refreshPage();",  // Incorrect method
+  "element.writeText(\"Hello\");",  // No 'writeText' method
+  "driver.window().resize(800,600);",  // Incorrect window sizing
+  "js.runScript(\"alert('Hi')\");",  // Incorrect method name
+  "driver.back();",  // Method should be driver.navigate().back();
+  "Select drop = new SelectBox(driver.findElement(By.id(\"list\")));",  // Wrong class name
+  "driver.frame(\"mainFrame\");",  // Incomplete switchTo
+  "driver.selectOption(\"Canada\");",  // No such method
+  "driver.getElement(By.name(\"email\"));",  // Should be findElement
+  "driver.setText(By.id(\"user\"), \"admin\");",  // Not valid
+  "driver.hover(By.id(\"menu\"));",  // No direct hover method
+  "wait.untilElement(By.id(\"done\"));",  // Incorrect method
+  "WebDriver driver = new WebDriver();",  // Cannot instantiate interface
+  "driver.getURL(\"http://test.com\");",  // Should be get()
+  "actions.rightClick(By.id(\"target\")).perform();",  // Need WebElement
+  "screenshot.capture(\"image.png\");",  // Invalid method
+  "driver.clickElement(By.id(\"submit\"));"  // Should get element then click
 ];
+
+
 
 let currentWord = "";
 let score = 0;

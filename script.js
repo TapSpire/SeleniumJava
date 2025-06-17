@@ -170,11 +170,11 @@ function startGame() {
   wordHolder.textContent = getRandomWord();
   wordHolder.onclick = handleWordClick;
 
-  // === Word changes every 5 seconds ===
+  // === Word changes every 10 seconds ===
   gameInterval = setInterval(() => {
     currentWord = getRandomWord();
     wordHolder.textContent = currentWord;
-  }, 5000);
+  }, 10000);
 
   timerInterval = setInterval(() => {
     timeLeft--;

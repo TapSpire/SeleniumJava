@@ -1,0 +1,340 @@
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background: #f0f8ff;
+  overflow: hidden;
+}
+
+h1 {
+  margin-top: 0;
+  padding-top: 10px;
+}
+
+.game-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  border: 1px solid black;
+  overflow: hidden;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; 
+  background-color: #aa00ff;
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+#score, #timer, #finalScore {
+  display: inline-block;
+  margin: 0 10px;
+  font-family: 'Press Start 2P', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  font-size: 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  width: 90vmin;
+  height: 90vmin;
+  gap: 4px;
+  margin-top: 20px;
+  border: 2px solid #222;
+  background-color: #fff;
+  border-radius: 12px;
+}
+
+.square {
+  /* Remove fixed width and height */
+  background-color: #2c003e; /* dark purple */
+  color: white;
+  font-size: 1.5em;
+  font-weight: bold;
+  border: 2px solid white;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.square span {
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: inherit;  /* inherit from square */
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.square.clicked span {
+  color: red;
+  font-style: italic;
+  transform: rotate(-10deg);
+}
+
+.square span {
+  color: white;
+  font-style: normal;
+  transform: none;
+}
+
+#circle {
+  position: absolute;
+  background-color: transparent; /* Make the orange box invisible */
+  border: none;                  /* Remove any borders */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36x;
+  font-weight: bold;
+  font-family: 'Press Start 2P', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  pointer-events: auto;
+  transition: all 0.3s ease;
+  z-index: 5;
+  width: 120px;
+  height: 60px;
+}
+
+#circle span {
+  color: white; /* Set word color to white */
+  font-family: 'Press Start 2P', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1em;
+  text-align: center;
+  user-select: none;
+}
+
+#wordHolder {
+  font-size: 36px;
+  font-weight: bold;
+  color: white;
+  font-family: 'Comic Sans MS', 'Arial Black', cursive, sans-serif;
+  text-align: center;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+button {
+  margin-top: 20px;
+  font-size: 1rem;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  background: #333;
+  color: white;
+  border-radius: 5px;
+  user-select: none;
+}
+
+button:hover {
+  background: #555;
+}
+
+.bonus-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  font-weight: bold;
+  color: green;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  z-index: 1000;
+  animation: fadeIn 0.5s, fadeOut 2s 2s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Fireworks animation */
+@keyframes fireworks {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.fireworks {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, red, yellow, orange);
+  animation: fireworks 1.5s ease-out infinite;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.firework-spark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  animation: fireworks 1s ease-out infinite;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.firework-spark:nth-child(odd) {
+  animation-duration: 0.8s;
+}
+
+.firework-spark:nth-child(even) {
+  animation-duration: 1.2s;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* semi-transparent */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.instructions-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2vh 5vw;
+  box-sizing: border-box;
+}
+
+.instructions-box {
+  background: white;
+  border-radius: 20px;
+  padding: 2vh 3vw;
+  max-height: 80vh;
+  width: 100%;
+  max-width: 600px;
+  overflow-y: auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  font-family: 'Arial', sans-serif;
+  font-size: clamp(14px, 2.5vw, 18px);
+  line-height: 1.5;
+  color: #333;
+}
+
+.instructions-box h2 {
+  font-size: clamp(18px, 4vw, 24px);
+  margin-top: 0;
+  text-align: center;
+  color: #444;
+}
+
+.instructions-box ul {
+  padding-left: 1.2em;
+  margin: 0;
+}
+
+.instructions-box li {
+  margin-bottom: 1em;
+  list-style: none;
+}
+
+.instructions-box li::before {
+  content: "👉 ";
+  color: #0099ff;
+}
+
+.instructions-box button {
+  margin-top: 20px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.instructions-box button:hover {
+  background: #45a049;
+}
+
+
+#startBtn {
+  display: block;
+  margin: 20px auto 0 auto;
+  padding: 10px 25px;
+  background: #4CAF50;
+  color: white;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+#startBtn:hover {
+  background: #45a049;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+

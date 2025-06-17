@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tapspire!</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" >
+</head>
+<body>
+  <div class="game-container">
+    <h1>Tapspire!</h1>
+    <div id="score">$: 0</div>
+    <div id="timer">Time: 30s</div>
+    <div class="grid"></div>
+    <div id="wordHolder"></div>
+    <div id="circle"></div>
+    <button id="restartBtn" style="display:none;">RESTART</button>
+  </div>
+  <script src="script.js"></script>
+  <audio id="click-sound" src="click.wav" preload="auto"></audio>
+  <audio id="correct-sound" src="correct.mp3" preload="auto"></audio>
+  <audio id="bonus-sound" src="bonus.mp3" preload="auto"></audio>
+  <div class="instructions-overlay" id="instructionsOverlay">
+    <div class="instructions-box">
+      <h2>🎮 HOW TO PLAY: Tapspire!</h2>
+      <ul>
+        <li>A word appears every 5 seconds. Decide fast!</li>
+        <li>Tap/click the word if it's spelled correctly.</li>
+        <li>✔️ Gain $1 for a correct word, ❌ lose $1 for a misspelled one.</li>
+        <li>🎲 Tap a tile on the grid to gamble its value.</li>
+        <li>If it’s an 8-tile, you win or lose an extra $8 based on the word!</li>
+        <li>🚫 Red tiles can't be reused.</li>
+        <li>⏱️ Bonus Time at scores: $15 (+15s), $30 (+30s), $60 (+60s)</li>
+        <li>💡 Pro Tip: Don’t trust autocorrect. Trust yourself.</li>
+      </ul>
+      <button onclick="startGameWithOverlay()">OK, I GOT THIS!</button>
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>
